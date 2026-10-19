@@ -119,12 +119,6 @@ Exact captured command output and ping results are documented in [`docs/verifica
 
 During configuration validation, I found that two access ports had temporarily been assigned to the wrong VLANs. I used `show vlan brief` to compare the active port membership against the design table, corrected Fa0/1 to VLAN 10 and Fa0/3 to VLAN 30, and reran the command to confirm the intended assignments.
 
-### Correcting an invalid host address
-
-I initially entered `192.168.10.0` for an endpoint. Packet Tracer rejected it because, with a `/24` mask, `.0` identifies the network rather than a usable host. I corrected the endpoint to `192.168.10.11/24`, configured `192.168.10.1` as its default gateway, and verified connectivity with successful ICMP tests.
-
-![Packet Tracer rejecting the subnet network identifier as a host address](images/invalid-network-address.png)
-
 ### Completing end-to-end trunk forwarding
 
 An initial trunk check showed the local interface in trunking mode without VLANs in the spanning-tree forwarding list. I completed the matching trunk configuration on the remote switch and verified that VLANs 10, 20, and 30 appeared as active and forwarding across the link.
@@ -162,7 +156,6 @@ show ip interface brief
 ├── docs/
 │   └── verification-results.md
 ├── images/
-│   ├── invalid-network-address.png
 │   ├── network-topology.png
 │   ├── same-vlan-connectivity.png
 │   └── vlan-access-port.png
